@@ -1,0 +1,38 @@
+3:38:36 DJANGO
+mkdir DJANGO
+cd DJANGO 
+pip install django
+py -m venv /myapp
+\myapp\Scripts\activate
+pip install django
+C:\myapp\Scripts\python.exe -m pip install --upgrade pip
+django-admin startproject myproject
+python manage.py startapp myapp
+
+
+
+
+6:26:35
+VIRTUAL ENVIORNENT IS NAMED myapp
+SET UP YOUR APP IN SETTINGS.py
+SET UP YOUR TEMPLATE IN SETTINGS.py
+SET UP YOUR URLS IN URLS.py OF MAIN PROJECT
+
+python manage.py migrate #to setup your database
+
+
+python manage.py makemigrations# to make new migrations to store sql files
+python manage.py createsuperuser # to create user for authentication
+Username (leave blank to use 'user'): cynthia
+Email address: chukwuebukaanulunko@gmail.com
+Password: 1603babycynthia
+user2:tim Password:django112
+user3:qqqq password:ebuka1234
+#5:36:37
+
+
+python manage.py makemigrations
+python manage.py migrate #make migrations before you migrate
+register your models in the admin panel
+
+python -m pip install Pillow #image processing package

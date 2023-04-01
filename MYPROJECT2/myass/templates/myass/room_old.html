@@ -1,0 +1,83 @@
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+.room-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+</style>
+
+<div class="room-container">
+
+    <div>
+
+        <h1>
+            {{room.name}}
+        </h1>
+
+        <p>{{room.description}}</p>
+
+        <div class=" comment-wrapper ">
+            <h3>Conversation</h3>
+            <hr>
+
+            {% for message in room_messages %}
+            <div>
+
+                {% if request.user == message.user %}
+                <a href="{% url 'deleteMessage' message.id %}">Delete</a>
+                {% endif %}
+
+                <small> @{{ message.user }} {{ message.created|timesince }} ago</small>
+                <p>{{message.body}}</p>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+
+
+        {% if request.user.is_authenticated %}
+        <div class="comment-form">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="body" placeholder="Write yout message here..."/>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+    <div>
+        <h3>Participants</h3>
+        <hr>
+
+        {% for user in participants %}
+        <div>
+            <p>@{{user.username}}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    
+</div>
+
+{% endblock %}
+
+
+ <!-- <button class="action-button" data-id="120" data-delete-url="https://randomuser.me/api/3324923"
+            data-edit-url="profile.html">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>ellipsis-horizontal</title>
+              <path
+                d="M16 7.843c-2.156 0-3.908-1.753-3.908-3.908s1.753-3.908 3.908-3.908c2.156 0 3.908 1.753 3.908 3.908s-1.753 3.908-3.908 3.908zM16 1.98c-1.077 0-1.954 0.877-1.954 1.954s0.877 1.954 1.954 1.954c1.077 0 1.954-0.877 1.954-1.954s-0.877-1.954-1.954-1.954z">
+              </path>
+              <path
+                d="M16 19.908c-2.156 0-3.908-1.753-3.908-3.908s1.753-3.908 3.908-3.908c2.156 0 3.908 1.753 3.908 3.908s-1.753 3.908-3.908 3.908zM16 14.046c-1.077 0-1.954 0.877-1.954 1.954s0.877 1.954 1.954 1.954c1.077 0 1.954-0.877 1.954-1.954s-0.877-1.954-1.954-1.954z">
+              </path>
+              <path
+                d="M16 31.974c-2.156 0-3.908-1.753-3.908-3.908s1.753-3.908 3.908-3.908c2.156 0 3.908 1.753 3.908 3.908s-1.753 3.908-3.908 3.908zM16 26.111c-1.077 0-1.954 0.877-1.954 1.954s0.877 1.954 1.954 1.954c1.077 0 1.954-0.877 1.954-1.954s-0.877-1.954-1.954-1.954z">
+              </path>
+            </svg>
+          </button> -->
